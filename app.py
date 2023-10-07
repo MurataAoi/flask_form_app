@@ -3,11 +3,13 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
+@app.route("/", methods=["GET"])
+def index_get():
+    return render_template("index.html")
+
+
 @app.route("/", methods=["GET", "POST"])
-def index():
-    if request.method == "GET":
-        return render_template("index.html")
-    else:
+def index_post():
         message = request.form['message']
         return render_template("index.html", message=message)
 
